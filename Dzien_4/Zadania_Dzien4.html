@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zadania praktyczne — Szkolenie UiPath — Dzień 4</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #222; background: #e8f1fb; padding: 20px; }
+    .page { max-width: 900px; margin: 0 auto; background: #fff; padding: 40px 50px; box-shadow: 0 2px 12px rgba(30,77,140,0.13); }
+    .header { display: flex; align-items: center; gap: 28px; border-bottom: 3px solid #5b9bd5; padding-bottom: 20px; margin-bottom: 30px; }
+    .header img { height: 70px; width: auto; flex-shrink: 0; }
+    .header-text { flex: 1; }
+    .header-text h1 { font-size: 22px; color: #1e4d8c; font-weight: 700; letter-spacing: 0.2px; margin-bottom: 3px; }
+    .header-text .subtitle { font-size: 13px; color: #5b9bd5; font-weight: 600; }
+    .header-text .subtitle-small { font-size: 12px; color: #999; margin-top: 2px; }
+    .day-header { background: #1e4d8c; color: #fff; font-size: 15px; font-weight: 700; padding: 10px 18px; margin: 30px 0 20px 0; border-radius: 4px; letter-spacing: 1.5px; text-transform: uppercase; }
+    .module-header { background: #eaf3fb; color: #1e4d8c; font-size: 13px; font-weight: 700; padding: 8px 16px; margin: 24px 0 14px 0; border-left: 4px solid #5b9bd5; border-radius: 0 3px 3px 0; text-transform: uppercase; letter-spacing: 0.5px; }
+    .task-card { border: 1px solid #cde0f5; border-radius: 5px; margin-bottom: 20px; overflow: hidden; }
+    .task-card.intro { border-color: #b3d1f0; }
+    .task-title { background: #5b9bd5; color: #fff; font-weight: 700; font-size: 14px; padding: 9px 16px; }
+    .task-card.intro .task-title { background: #3a7abf; }
+    .task-topic { background: #f0f7ff; font-size: 12px; color: #2a6096; padding: 5px 16px; border-bottom: 1px solid #cde0f5; font-style: italic; }
+    .task-body { padding: 14px 16px; }
+    .task-body h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; color: #1e4d8c; margin: 12px 0 6px 0; letter-spacing: 0.6px; }
+    .task-body h4:first-child { margin-top: 0; }
+    .task-body ol, .task-body ul { padding-left: 20px; }
+    .task-body ol li, .task-body ul li { margin-bottom: 4px; }
+    code { background: #eaf3fb; color: #1e4d8c; padding: 1px 5px; border-radius: 3px; font-family: 'Consolas', 'Courier New', monospace; font-size: 12px; border: 1px solid #cde0f5; }
+    pre { background: #f4f9ff; border: 1px solid #cde0f5; border-radius: 4px; padding: 10px 14px; font-family: 'Consolas', 'Courier New', monospace; font-size: 12px; margin: 8px 0; overflow-x: auto; white-space: pre-wrap; word-break: break-all; color: #1e4d8c; }
+    .hint-box { background: #e8f4fd; border-left: 3px solid #5b9bd5; padding: 8px 12px; margin: 8px 0; font-size: 13px; border-radius: 0 3px 3px 0; color: #1e4d8c; }
+    .bonus-tag { display: inline-block; background: #3a7abf; color: #fff; font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 3px; margin-right: 4px; vertical-align: middle; text-transform: uppercase; letter-spacing: 0.3px; }
+    table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 8px 0; }
+    table th { background: #eaf3fb; font-weight: 700; padding: 6px 10px; border: 1px solid #cde0f5; text-align: left; color: #1e4d8c; }
+    table td { padding: 5px 10px; border: 1px solid #cde0f5; }
+    strong { color: #1e4d8c; }
+    .footer { text-align: center; font-size: 12px; color: #999; border-top: 2px solid #eaf3fb; margin-top: 36px; padding-top: 16px; }
+    .footer strong { color: #1e4d8c; }
+    @media print {
+      body { background: #fff; padding: 0; font-size: 12px; }
+      .page { box-shadow: none; padding: 20px 30px; max-width: 100%; }
+      .task-card { page-break-inside: avoid; break-inside: avoid; }
+      code { border: none; background: #f0f0f0; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <img src="../logo.png" alt="Robotivity logo">
+    <div class="header-text">
+      <h1>Zadania praktyczne — Szkolenie UiPath — Dzień 4</h1>
+      <div class="subtitle">Autoryzowany Partner UiPath</div>
+      <div class="subtitle-small">info@robotivity.pl &nbsp;·&nbsp; www.Robotivity.pl &nbsp;·&nbsp; tel.: +48 690 020 576</div>
+    </div>
+  </div>
+
+  <div class="day-header">Dzień 4</div>
+
+  <div class="module-header">Moduł 1 — State Machine: wprowadzenie</div>
+
+  <!-- Ćwiczenie 1 -->
+  <div class="task-card intro">
+    <div class="task-title">Ćwiczenie 1 — State Machine: Input Dialog z rozgałęzieniem</div>
+    <div class="task-topic">Folder: Dzien4_Zadanie1_StateMachine_Wprowadzenie/ · Temat: State Machine + Transitions + pętla</div>
+    <div class="task-body">
+      <h4>Opis zadania</h4>
+      <ol>
+        <li>Użytkownik wpisuje imię przez <code>Input Dialog</code></li>
+        <li>Jeśli <strong>"Adam"</strong> → przypisz nazwisko "Nowak"</li>
+        <li>Jeśli <strong>"Ewa"</strong> → przypisz nazwisko "Kowalska"</li>
+        <li>Inne imię → ponów pytanie (pętla!) z Log Message: "Podane imie nie jest Adam ani Ewa."</li>
+        <li>Wyświetl pełne imię i nazwisko w Log Message</li>
+      </ol>
+      <h4>Stany</h4>
+      <table>
+        <tr><th>Stan</th><th>Entry</th><th>Exit</th><th>Transitions</th></tr>
+        <tr><td><strong>State - Init</strong> (Initial)</td><td><code>Input Dialog</code> → <code>str_imie2</code></td><td>Log: "Przechodze przez Exit w State Init"</td><td><code>str_imie2 = "Adam"</code> → State Adam; <code>str_imie2 = "Ewa"</code> → State Ewa; inne (Action: Log "Podane imie nie jest Adam ani Ewa.") → State Init (pętla)</td></tr>
+        <tr><td><strong>State - Adam</strong></td><td><code>str_imie2 = str_imie2 & " Nowak"</code></td><td>Log: "Przechodze przez Exit - Adam"</td><td>(bezwarunkowa) → Final State</td></tr>
+        <tr><td><strong>State - Ewa</strong></td><td><code>str_imie2 = str_imie2 & " Kowalska"</code></td><td>Log: "Przechodze przez Exit - Ewa"</td><td>(bezwarunkowa) → Final State</td></tr>
+        <tr><td><strong>Final State</strong></td><td><code>Log Message: "Twoja osoba to: " & str_imie2</code></td><td>—</td><td>— (koniec)</td></tr>
+      </table>
+      <div class="hint-box">
+        <strong>Wskazówka:</strong> Scope zmiennych — <code>str_imie2</code> musi być na poziomie StateMachine (nie wewnątrz State). Kolejność Transitions jest ważna — pierwsza spełniona wygrywa. Każdy State ma <strong>Entry</strong> i <strong>Exit</strong>. Transition ma opcjonalne pole <strong>Action</strong> (np. Log Message).
+      </div>
+      <h4>Zmienne</h4>
+      <table>
+        <tr><th>Nazwa</th><th>Typ</th><th>Scope</th><th>Opis</th></tr>
+        <tr><td>str_imie2</td><td>String</td><td>StateMachine</td><td>Imię wpisane przez użytkownika</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="module-header">Moduł 2 — Dictionary</div>
+
+  <!-- Ćwiczenie 2 -->
+  <div class="task-card intro">
+    <div class="task-title">Ćwiczenie 2 — Kursy walut NBP → Dictionary</div>
+    <div class="task-topic">Folder: Dzien4_Zadanie2_Dictionary_Waluty/ · Temat: Table Extraction + Dictionary + dostęp po kluczu</div>
+    <div class="task-body">
+      <h4>Opis zadania</h4>
+      <ol>
+        <li>Otwórz stronę NBP z tabelą kursów walut (tabela A)</li>
+        <li>Pobierz tabelę kursów (<code>Extract Table Data</code>)</li>
+        <li>Zapisz tabelę do <code>Waluty.xlsx</code></li>
+        <li>Zainicjalizuj Dictionary: <code>dict_waluty = New Dictionary(Of String, String)</code></li>
+        <li>W pętli <code>For Each Row</code>: klucz = kod waluty, wartość = kurs</li>
+        <li>Log Message: <code>"Kurs euro to: " & dict_waluty("1 EUR")</code></li>
+      </ol>
+      <div class="hint-box">
+        <strong>Uwaga:</strong> Dictionary <strong>MUSI</strong> być zainicjalizowane w Assign: <code>New Dictionary(Of String, String)</code> — inaczej <code>NullReferenceException</code>!
+      </div>
+      <h4>Zmienne</h4>
+      <table>
+        <tr><th>Nazwa</th><th>Typ</th><th>Opis</th></tr>
+        <tr><td>dict_waluty</td><td>Dictionary(Of String, String)</td><td>Słownik walut: kod → kurs</td></tr>
+        <tr><td>dt_waluty</td><td>DataTable</td><td>Dane z tabeli kursów NBP</td></tr>
+        <tr><td>str_key_kod_waluty</td><td>String</td><td>Klucz (np. "1 EUR")</td></tr>
+        <tr><td>str_value_wartosc</td><td>String</td><td>Wartość kursu</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bonus - Tłumacz walut -->
+  <div class="task-card">
+    <div class="task-title"><span class="bonus-tag">Bonus</span> Zadanie dodatkowe — Tłumacz walut (interaktywny)</div>
+    <div class="task-topic">Temat: While + Input Dialog + Dictionary.ContainsKey + walidacja</div>
+    <div class="task-body">
+      <h4>Opis zadania</h4>
+      <ol>
+        <li>Podczas ładowania Dictionary (kroki 1-5 z Ćwiczenia 2), dodaj obliczenie jednostkowej wartości każdej waluty oraz usuń liczby z kodu waluty</li>
+        <li>Pętla <code>While</code> z <code>bl_kontynuuj</code>:
+          <ul>
+            <li><code>Input Dialog</code> — "Podaj kod waluty (np. 'EUR') lub 'koniec'"</li>
+            <li>Jeśli "koniec" → zakończ pętlę</li>
+            <li>Jeśli <code>dict_waluty.ContainsKey(str_kod)</code> → Message Box z kursem</li>
+            <li>Jeśli nie → Message Box: "Nie znaleziono waluty"</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="module-header">Moduł 3 — Rozbudowane State Machine</div>
+
+  <!-- Ćwiczenie 3 -->
+  <div class="task-card">
+    <div class="task-title">Ćwiczenie 3 — Rozbudowane State Machine z obsługą błędów</div>
+    <div class="task-topic">Folder: Dzien4_Zadanie3_Rozbudowane_StateMachine/ · Temat: State Machine + BusinessRuleException + SystemException + Robotivity</div>
+    <div class="task-body">
+      <h4>Opis zadania</h4>
+      <p>Stwórz State Machine z 4 stanami przetwarzającą transakcje z Excela w Robotivity:</p>
+      <h4>Stany procesu</h4>
+      <table>
+        <tr><th>Stan</th><th>Opis</th><th>Transitions</th></tr>
+        <tr><td><strong>State - Init</strong></td><td>Config → Dictionary, Kill Process, otwórz Robotivity, zaloguj (Retry Scope)</td><td>Sukces → Pobierz trans.; SE → Final State</td></tr>
+        <tr><td><strong>State - Pobierz transakcję</strong></td><td>Sprawdź TransactionNumber, pobierz DataRow</td><td>Sukces → Procesowanie; Koniec → Final State</td></tr>
+        <tr><td><strong>State - Procesowanie</strong></td><td>Wpisz dane do Robotivity, obsłuż BE/SE</td><td>Sukces → Pobierz trans.; SE → Init (restart!)</td></tr>
+        <tr><td><strong>Final State</strong></td><td>Log status, Kill Process</td><td>— (koniec)</td></tr>
+      </table>
+      <h4>Kluczowe elementy</h4>
+      <ul>
+        <li><strong>BusinessRuleException</strong> — dane nienumeryczne → pomiń transakcję (NIE ponawiaj)</li>
+        <li><strong>SystemException</strong> — błąd techniczny → restart Init (PONÓW)</li>
+        <li>Czyszczenie <code>BusinessRuleException = Nothing</code> na początku procesowania</li>
+        <li>Dictionary jako Config — wzorzec REFramework</li>
+        <li>Retry Scope wokół logowania — 2 próby, 3s odstęp</li>
+      </ul>
+      <h4>Zmienne</h4>
+      <table>
+        <tr><th>Nazwa</th><th>Typ</th><th>Opis</th></tr>
+        <tr><td>int_transaction_number</td><td>Int32 (default=1)</td><td>Numer bieżącego wiersza</td></tr>
+        <tr><td>dict_Config</td><td>Dictionary(Of String, String)</td><td>Ustawienia</td></tr>
+        <tr><td>dt_transakcje</td><td>DataTable</td><td>Dane z Transactions.xlsx</td></tr>
+        <tr><td>row_TransactionItem</td><td>DataRow</td><td>Bieżący wiersz</td></tr>
+        <tr><td>SystemException</td><td>Exception</td><td>Wyjątek systemowy</td></tr>
+        <tr><td>BusinessRuleException</td><td>BusinessRuleException</td><td>Wyjątek biznesowy</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="module-header">Moduł 4 — REFramework</div>
+
+  <!-- Ćwiczenie 4 -->
+  <div class="task-card intro">
+    <div class="task-title">Ćwiczenie 4 — REFramework: Wprowadzenie (demo)</div>
+    <div class="task-topic">Folder: Dzien4_Zadanie4_RoboticEnterpriseFramework_Wprowadzenie/ · Temat: Struktura REFramework + Config.xlsx + Main.xaml</div>
+    <div class="task-body">
+      <h4>Opis ćwiczenia (z prowadzącym)</h4>
+      <ol>
+        <li><code>File → New → Process</code> → szablon <strong>"Robotic Enterprise Framework"</strong></li>
+        <li>Przejrzyj strukturę: <code>Main.xaml</code>, <code>Framework/</code>, <code>Data/Config.xlsx</code></li>
+        <li>Uruchom "out of the box" (F5) — obserwuj logi</li>
+        <li>Edytuj <code>Config.xlsx</code> — zmień <code>OrchestratorQueueName</code></li>
+        <li>Otwórz <code>Process.xaml</code> — tu wpisujesz logikę biznesową</li>
+      </ol>
+      <h4>Config.xlsx — trzy arkusze</h4>
+      <table>
+        <tr><th>Arkusz</th><th>Opis</th><th>Przykład</th></tr>
+        <tr><td><strong>Settings</strong></td><td>Ustawienia procesu</td><td>OrchestratorQueueName, MaxRetryNumber</td></tr>
+        <tr><td><strong>Constants</strong></td><td>Stałe wartości</td><td>Timeout_General = 30000</td></tr>
+        <tr><td><strong>Assets</strong></td><td>Nazwy assetów z Orchestratora</td><td>AssetName = "Sciezka_Aplikacji"</td></tr>
+      </table>
+      <div class="hint-box">
+        <strong>Uwaga:</strong> W arkuszu Assets nie wpisujemy haseł — tylko <strong>nazwy assetów</strong> z Orchestratora.
+      </div>
+    </div>
+  </div>
+
+  <!-- Ćwiczenie 5a -->
+  <div class="task-card">
+    <div class="task-title">Ćwiczenie 5a — Dispatcher</div>
+    <div class="task-topic">Folder: Dzien4_Zadanie5a_Dispatcher/ · Temat: Try Catch + Add Queue Items do kolejki Orchestratora</div>
+    <div class="task-body">
+      <h4>Opis zadania</h4>
+      <ol>
+        <li><code>Try Catch</code> wokół <code>Read Range</code>:
+          <ul>
+            <li><strong>Try:</strong> <code>Read Range Workbook</code> — wczytaj <code>Transactions.xlsx</code> (AddHeaders = True)</li>
+            <li><strong>Catch (Exception):</strong> <code>Kill Process "EXCEL"</code> → <code>Delay 2s</code> → ponów <code>Read Range</code></li>
+          </ul>
+        </li>
+        <li><em>(Opcja A — Bulk)</em> <code>Bulk Add Queue Items</code>:
+          <ul>
+            <li>QueueName: <code>Robotivity_Bulk</code></li>
+            <li>FolderPath: <code>Robotivity2</code></li>
+          </ul>
+        </li>
+        <li><em>(Opcja B — po kolei z referencją)</em> <code>For Each Row</code> → <code>Add Queue Item</code>:
+          <ul>
+            <li>QueueType: <code>Robitivity_Single</code></li>
+            <li>FolderPath: <code>Robotivity2</code></li>
+            <li>Reference: <code>CashIn & "_" & OnUsCheck</code></li>
+            <li>ItemInformation: <code>CashIn</code>, <code>OnUsCheck</code>, <code>NotOnUsCheck</code></li>
+          </ul>
+        </li>
+        <li>Log Message: "Transakcje dodane do kolejki"</li>
+      </ol>
+      <div class="hint-box">
+        <strong>Wskazówka:</strong> Try Catch wokół Read Range zabezpiecza przed zablokowanym plikiem Excel. Opcja Bulk dodaje wszystko na raz, opcja z pętlą pozwala nadać unikatowe referencje.
+      </div>
+      <h4>Zmienne</h4>
+      <table>
+        <tr><th>Nazwa</th><th>Typ</th><th>Opis</th></tr>
+        <tr><td>dt_transakcje</td><td>DataTable</td><td>Dane z Transactions.xlsx</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Ćwiczenie 5b -->
+  <div class="task-card">
+    <div class="task-title">Ćwiczenie 5b — REFramework Performer</div>
+    <div class="task-topic">Folder: Dzien4_Zadanie5b_RoboticEnterpriseFramework_Performer/ · Temat: REFramework + Queue + Robotivity + BusinessRuleException</div>
+    <div class="task-body">
+      <h4>Co należy skonfigurować</h4>
+      <ol>
+        <li><strong>Config.xlsx:</strong>
+          <ul>
+            <li>Settings: <code>OrchestratorQueueName</code> = <code>4a_Dispatcher</code></li>
+            <li>Settings: <code>OrchestratorQueueFolder</code> = <code>Nazwa Folderu w Orchestrator</code></li>
+            <li>Assets: nazwy assetów (ścieżka do aplikacji)</li>
+          </ul>
+        </li>
+        <li><strong>InitAllApplications.xaml:</strong>
+          <ul>
+            <li>Get Credential → Username, Password</li>
+            <li>Otwórz Robotivity i zaloguj się</li>
+          </ul>
+        </li>
+        <li><strong>Process.xaml:</strong>
+          <ul>
+            <li>Wyciągnij dane z <code>in_TransactionItem.SpecificContent</code></li>
+            <li>Sprawdź <code>.IsNumeric</code></li>
+            <li>Numeryczne → Type Into + Click Accept</li>
+            <li>Nienumeryczne → <code>Throw New BusinessRuleException("Dane nie sa numeryczne")</code></li>
+          </ul>
+        </li>
+        <li><strong>CloseAllApplications.xaml:</strong> <code>Kill Process "robotivity"</code></li>
+      </ol>
+      <div class="hint-box">
+        <strong>Wskazówka:</strong> REFramework automatycznie obsługuje retry, logging, status transakcji i restart po System Exception. Programista edytuje głównie: <code>Process.xaml</code>, <code>InitAllApplications.xaml</code>, <code>Config.xlsx</code>.
+      </div>
+    </div>
+  </div>
+
+  <!-- Bonus - Logowanie wyników -->
+  <div class="task-card">
+    <div class="task-title"><span class="bonus-tag">Bonus</span> Zadanie bonusowe — Logowanie wyników do Excela</div>
+    <div class="task-topic">Temat: Modyfikacja SetTransactionStatus.xaml + Append Range</div>
+    <div class="task-body">
+      <h4>Opis zadania</h4>
+      <ol>
+        <li>W <code>SetTransactionStatus.xaml</code> po ustawieniu statusu:</li>
+        <li>Oblicz status i referencję transakcji</li>
+        <li><code>Append Range</code> → dopisz wiersz do <code>Data/Output/TransactionLog.xlsx</code></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Bonus - Email z raportem -->
+  <div class="task-card">
+    <div class="task-title"><span class="bonus-tag">Bonus</span> Zadanie bonusowe — Wysyłka emaila z raportem</div>
+    <div class="task-topic">Temat: Podsumowanie po zakończeniu REFramework + SMTP</div>
+    <div class="task-body">
+      <h4>Opis zadania</h4>
+      <ol>
+        <li>W <code>CloseAllApplications.xaml</code> (przed Kill Process):</li>
+        <li>Policz transakcje Successful i Failed</li>
+        <li>Stwórz treść emaila z podsumowaniem</li>
+        <li>Wyślij przez SMTP</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer">
+    <strong>Robotivity®</strong> — Autoryzowany Partner UiPath<br>
+    info@robotivity.pl · www.Robotivity.pl
+  </div>
+
+</div>
+</body>
+</html>
